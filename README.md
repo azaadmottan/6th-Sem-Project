@@ -50,7 +50,7 @@
 
 ```
 
-5. Visit http://localhost:3000 in your browser. 
+5. Visit http://localhost:5173 in your browser. 
 
 # Contributing
 We welcome contributions! If you'd like to contribute to SnapThread, please follow these guidelines:
