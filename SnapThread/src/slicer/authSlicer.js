@@ -4,6 +4,7 @@ const initialState = {
 
     status: false,
     userData: null,
+    mode: "light"
 }
 
 const authSlicer = createSlice({
@@ -34,11 +35,18 @@ const authSlicer = createSlice({
             state.userData = null;
 
             localStorage.removeItem("authUserData");
+        }, 
+        toggleTheme: (state) => {
+
+            state.mode = (state.mode === "light") ? ("dark") : ("light");
+
+            document.querySelector("html").classList.remove("light", "dark");
+            document.querySelector("html").classList.add(state.mode);            
         }
     }
 
 });
 
-export const { login, logout } = authSlicer.actions;
+export const { login, logout, toggleTheme } = authSlicer.actions;
 
 export default authSlicer.reducer;

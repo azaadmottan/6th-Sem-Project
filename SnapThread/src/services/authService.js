@@ -38,6 +38,7 @@ class AuthService {
             }
         } catch (error) {
             
+            throw error;
             console.log(`\nSomething went wrong while creating account !\nError: ${error}`);
         }
     }
@@ -53,7 +54,8 @@ class AuthService {
             return await this.account.createEmailSession(email, password);
         } catch (error) {
 
-            console.log(`Something went wrong while login user !\nError: ${error}`);
+            throw error;
+            // console.log(`Something went wrong while login user !\nError: ${error}`);
         }
     }
 
