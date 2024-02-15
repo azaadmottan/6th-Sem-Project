@@ -42,10 +42,16 @@ const authSlicer = createSlice({
 
             document.querySelector("html").classList.remove("light", "dark");
             document.querySelector("html").classList.add(state.mode);            
+
+            localStorage.removeItem("snapTheme");
+            localStorage.setItem("snapTheme", state.mode);
+
         }
     }
 
 });
+
+
 
 export const { login, logout, toggleTheme } = authSlicer.actions;
 

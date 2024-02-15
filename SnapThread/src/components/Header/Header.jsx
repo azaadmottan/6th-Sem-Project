@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Logo, LogoutBtn, ThemeBtn } from "../index.js";
+import { Logo, LogoutBtn, ThemeBtn, ToolTip } from "../index.js";
 import { useSelector } from "react-redux";
 
 function Header() {
@@ -59,11 +59,14 @@ function Header() {
     return (
         <>
         <header className="sticky top-0 z-10">
-            <nav className="flex items-center justify-between bg-white px-6 py-5 font-semibold dark:bg-[#150d4c] dark:text-white">
+            <nav className="flex items-center justify-between bg-white px-6 py-5 font-semibold dark:bg-gradient-to-r dark:from-[#2900a2] dark:to-[#eb042b] dark:text-white">
             <ul className="flex items-center gap-4">
                 <div className="flex items-center">
                 <Link to="/" className="flex items-center">
-                    <Logo />
+
+                    <ToolTip text="Explore SnapThread">
+                        <Logo />
+                    </ToolTip>
                 </Link>
                 </div>
                 {navItems.map((item) =>
@@ -91,11 +94,11 @@ function Header() {
                         : ""
                     } ${
                         item.name === "Sign in"
-                        ? "bg-[#E60023] text-white font-normal px-3 py-2 rounded-full hover:bg-red-700"
+                        ? `bg-[#E60023] text-white font-semibold px-3 py-2 rounded-full transition-all delay-75 hover:bg-red-700 dark:bg-[#ff2323] dark:hover:bg-[#f7f5f5] dark:hover:text-[#E60023] hover:`
                         : ""
                     } ${
                         item.name === "Sign up"
-                        ? "bg-zinc-200 text-black font-medium px-3 py-2 rounded-full hover:bg-zinc-300 dark:bg-zinc-100 dark:hover:bg-zinc-300"
+                        ? "bg-zinc-200 text-black font-semibold px-3 py-2 rounded-full hover:bg-zinc-300 dark:bg-zinc-100 dark:hover:bg-white"
                         : ""
                     } `}
                     >

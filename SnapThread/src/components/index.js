@@ -10,6 +10,7 @@ import ProtectRoutes from "./ProtectRoutes";
 import LogoutBtn from "./Header/LogoutBtn";
 import Processing from "./Processing/Processing";
 import ThemeBtn from "./ThemeBtn/ThemeBtn";
+import ToolTip from "./ToolTip/ToolTip";
 
 export {
     Header,
@@ -23,5 +24,6 @@ export {
     PostCard,
     ProtectRoutes,
     Processing,
-    ThemeBtn
+    ThemeBtn,
+    ToolTip
 }

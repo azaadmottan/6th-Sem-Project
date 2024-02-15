@@ -62,7 +62,7 @@ function SignUp() {
     return (
     <>
         
-        <div className='w-[500px] m-auto my-8 p-10 rounded-2xl bg-zinc-200 bg-opacity-80'>
+        <div className='w-[500px] m-auto p-10 rounded-2xl bg-zinc-200 bg-opacity-80'>
             <div className='flex items-center justify-center'>
                 <Logo textSize={"text-2xl"}/>
             </div>
