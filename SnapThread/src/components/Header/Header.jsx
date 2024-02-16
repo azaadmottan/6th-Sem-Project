@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Logo, LogoutBtn, ThemeBtn, ToolTip } from "../index.js";
 import { useSelector } from "react-redux";
+import { FaRegUserCircle } from "react-icons/fa";
+
 
 function Header() {
     const authStatus = useSelector((state) => state.auth.status);
@@ -56,6 +58,19 @@ function Header() {
         },
     ];
 
+    const [open, setOpen] = useState(false);
+
+    const profileRef = useRef();
+    const menuRef = useRef();
+
+    window.addEventListener("click", (e) => {
+
+        if (profileRef.current && !profileRef.current.contains(e.target)){
+            
+            setOpen(false);
+        }
+    });
+
     return (
         <>
         <header className="sticky top-0 z-10">
@@ -94,7 +109,7 @@ function Header() {
                         : ""
                     } ${
                         item.name === "Sign in"
-                        ? `bg-[#E60023] text-white font-semibold px-3 py-2 rounded-full transition-all delay-75 hover:bg-red-700 dark:bg-[#ff2323] dark:hover:bg-[#f7f5f5] dark:hover:text-[#E60023] hover:`
+                        ? `bg-[#E60023] text-white font-semibold px-3 py-2 rounded-full transition-all delay-75 hover:bg-red-700 dark:bg-[#ff2323] dark:hover:bg-[#f7f5f5] dark:hover:text-[#E60023]`
                         : ""
                     } ${
                         item.name === "Sign up"
@@ -110,9 +125,60 @@ function Header() {
                 <div>
                     <ThemeBtn />
                 </div>
-                
-
+                    
                 {authStatus && (
+
+                    <div 
+                        className="bg-zinc-200 p-2 rounded-full hover:bg-zinc-300 dark:bg-zinc-100 dark:hover:bg-white cursor-pointer relative"
+                        onClick={() => setOpen(!open)}
+                        ref={profileRef} 
+                    >
+
+                        <FaRegUserCircle size="27px" color="black"
+                        />
+
+                        {open && (
+
+                            <div 
+                                className="bg-white w-32 rounded-xl px-3 py-2 flex items-center flex-col gap-2 absolute -left-16 top-12"
+                                ref={menuRef}
+                            >
+                                
+                                {authStatus && (
+                                    <button
+                                        className="px-3 py-[3px] w-full rounded-xl bg-zinc-300 font-semibold text-black hover:bg-zinc-200"
+                                        onClick={() => navigate("/user-profile")}
+                                    >
+                                        Profile
+                                    </button>
+                                )}
+
+                                {authStatus && (
+                                    <button
+                                        className="px-3 py-[3px] w-full rounded-xl bg-zinc-300 font-semibold text-black hover:bg-zinc-200"
+                                        onClick={() => navigate("/add-new-post")}
+                                    >
+                                        Add Post
+                                    </button>
+                                )}
+
+                                {authStatus && (
+                                    <button
+                                        className="px-3 py-[3px] w-full rounded-xl bg-zinc-300 font-semibold text-black hover:bg-zinc-200"
+                                        onClick={() => navigate("/all-posts")}
+                                    >
+                                        All Posts
+                                    </button>
+                                )}
+
+                                {authStatus && <LogoutBtn />}
+                            </div>
+                        )}
+                    </div>
+                )
+                }
+
+                {/* {authStatus && (
                 <button
                     className="px-3 py-2 rounded-full bg-zinc-200 font-medium text-black hover:bg-zinc-300"
                     onClick={() => navigate("/all-posts")}
@@ -130,7 +196,7 @@ function Header() {
                 </button>
                 )}
 
-                {authStatus && <LogoutBtn />}
+                {authStatus && <LogoutBtn />} */}
             </ul>
             </nav>
         </header>

@@ -11,7 +11,7 @@ function PostCard({ $id, title, featuredImage }) {
 
     <>
         <Link to={`/post/${$id}`}>
-            <div className='bg-white p-2 rounded-xl transition-colors ease-in-out delay-150 hover:shadow-zinc-500 shadow-lg dark:bg-[#1e1b8f] dark:text-white'>
+            <div className='bg-white p-2 rounded-xl transition-colors ease-in-out delay-150 hover:shadow-zinc-700 shadow-lg dark:bg-[#0e125d] dark:text-white'>
 
                 <div >
                     <div className='overflow-hidden rounded-xl'>

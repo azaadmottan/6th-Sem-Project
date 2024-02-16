@@ -62,7 +62,8 @@ function Post() {
     
     const handleLike = async() => {
         
-        setLike(!like);
+        // setLike(!like);
+        setLike(prevLike => !prevLike);
 
         try {
             
@@ -74,34 +75,35 @@ function Post() {
         }
     }
 
-    const fetchLikes = async() => {
-
-        try {
-            
-            const featuredImage = post.featuredImage;
-                
-            await confService.getLikes({ featuredImage }).then((like) => {
-
-                like.documents.map((post) => {
-
-                    if (post.userId === userId){
-                        
-                        setTotalLikes(like.total);
-                        setLike(true);
-                    }
-                })
-                
-            });
-        } catch (error) {
-            
-        }
-
-    }
-
+    
     useEffect(() => {
         
+        const fetchLikes = async() => {
+    
+            try {
+                
+                const featuredImage = post?.featuredImage;
+                    
+                await confService.getLikes({ featuredImage }).then((like) => {
+    
+                    like.documents.map((post) => {
+    
+                        if (post.userId === userId){
+                            
+                            setTotalLikes(like.total);
+                            setLike(true);
+                        }
+                    })
+                    
+                });
+            } catch (error) {
+                
+            }
+    
+        }
+
         fetchLikes();
-    }, [totalLikes, handleLike]);
+    }, [like]);
     
 
     const [comment, setComment] = useState(false);
@@ -199,16 +201,16 @@ function Post() {
 
                     </div>
 
-                    <div className='mt-6 bg-white px-4 py-4 rounded-xl relative'>
+                    <div className='mt-6 bg-white px-4 py-4 rounded-xl relative dark:bg-[#0e125d] dark:text-white'>
                         <h2 className='text-xl font-extrabold'>{post.title}</h2>
                         <span className='absolute -top-3 right-2 bg-[#E60023] text-white px-2 rounded-full cursor-context-menu' title={`Status: ${post.status}`}>{post.status}</span>
                     </div>
 
-                    <div className='mt-6 bg-white px-4 py-4 rounded-xl'>
+                    <div className='mt-6 bg-white px-4 py-4 rounded-xl dark:bg-[#0e125d] dark:text-white'>
                         <h3 className='text-lg font-medium italic'>{post.content}</h3>
                     </div>
 
-                    <div className='mt-6 bg-white px-4 py-4 rounded-xl select-none'>
+                    <div className='mt-6 bg-white px-4 py-4 rounded-xl select-none dark:bg-[#0e125d] dark:text-white'>
 
                         <div className='flex items-center my-2 gap-14'>
                             {/* <FaRegHeart size={"25px"} /> */}

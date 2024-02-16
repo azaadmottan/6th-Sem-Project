@@ -111,7 +111,6 @@ function PostForm({ post }) {
     }, [watch, slugTransform, setValue]);
     
 
-
     return (
     <>
     <div className='w-8/12 m-auto px-6 py-8 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#15016e]'>
