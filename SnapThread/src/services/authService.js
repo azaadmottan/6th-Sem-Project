@@ -94,12 +94,14 @@ class AuthService {
 
     // update User Profile
     
-    async updateUserProfile ({ userId, userName, password }) {
+    async updateUserProfile ({ userId, name }) {
 
         try {
+
+            const userName = await this.account.updateName(name);
+            // const pwd = await this.account.updatePassword(password);
             
-            return (await this.account.updateName(userName),
-            await this.account.updatePassword(password));
+            return true;
         } catch (error) {
             
             throw error;

@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 import { MdCloudUpload } from "react-icons/md";
 import { AiFillDelete, AiFillFileImage } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Processing } from "../components/index.js";
 import confService from "../services/confService.js";
 import authService from "../services/authService.js";
+import { logout } from "../slicer/authSlicer.js";
 
 
 function EditProfile() {
@@ -17,6 +18,7 @@ function EditProfile() {
     const navigate = useNavigate();
 
     const [processing, setProcessing] = useState(false);
+    const [msg, setMsg] = useState(false);
 
     const userId = useSelector((state) => (state.auth.userData?.$id));
 
@@ -36,14 +38,17 @@ function EditProfile() {
                 
                 const fileId = file.$id;
                 
-                const dbPost = await confService.createProfile({ userId: userId, avatarId: fileId });
+                const dbPost = await confService.createProfile({ userId: userId, avatarId: fileId, aboutUser: data.aboutUser });
             }
 
-            const resp = await authService.updateUserProfile({ userId, userName: data.userName, password: data.password });
+            const resp = await authService.updateUserProfile({ userId, name: data.userName });
 
             setProcessing(false);
 
-            console.log(resp);
+            setMsg(true);
+            // useDispatch(logout());
+
+            // navigate("/signIn");
         }
     }
 
@@ -134,12 +139,12 @@ function EditProfile() {
                 <div>
                     <label htmlFor="username" className="dark:text-white">Username</label>
                     <input type="text" {...register("userName", {required: true,})} id='username' placeholder='Enter username' 
-                    className='w-full mb-4 px-3 py-2 border-2 rounded-lg focus:outline-none focus:border-sky-500 dark:focus:border-red-500'
+                    className='w-full mb-4 px-3 py-2 border-2 rounded-lg focus:outline-none tracking-wider focus:border-sky-500 dark:focus:border-red-500 dark:bg-[#030131] dark:text-white'
                     autoComplete="off"
                     />
                 </div>
                 
-                <div>
+                {/* <div>
                     <label htmlFor="email"  className="dark:text-white">Email-id</label>
                     <input type="email" {...register("email", {required: true, validate: { matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                         "Email address must be a valid address",
@@ -147,12 +152,12 @@ function EditProfile() {
                     className='w-full mb-4 px-3 py-2 border-2 rounded-lg focus:outline-none focus:border-sky-500 dark:focus:border-red-500'
                     autoComplete="off"
                     />
-                </div>
+                </div> */}
 
                 <div>
-                    <label htmlFor="password"  className="dark:text-white">Password</label>
-                    <input type="text" {...register("password", {required: true,})} id='password' placeholder='Enter password' 
-                    className='w-full mb-4 px-3 py-2 border-2 rounded-lg focus:outline-none focus:border-sky-500 dark:focus:border-red-500'
+                    <label htmlFor="aboutUser"  className="dark:text-white">About User</label>
+                    <input type="text" {...register("aboutUser", {required: false,})} id='aboutUser' placeholder='About your self...' 
+                    className='w-full mb-4 px-3 py-2 border-2 rounded-lg focus:outline-none tracking-wider focus:border-sky-500 dark:focus:border-red-500 dark:bg-[#030131] dark:text-white'
                     autoComplete="off"
                     />
                 </div>
@@ -161,6 +166,15 @@ function EditProfile() {
                     (processing) && (
 
                         <Processing />
+                    )
+                }
+
+                {
+                    (msg) && (
+
+                        <div className="dark:bg-[#3029c0] dark:text-white mt-2 bg-blue-700 text-white rounded-lg flex items-center justify-center p-2 select-none" title="Update can be reflected after login again.">
+                            You have to login again !
+                        </div>
                     )
                 }
                 <div>

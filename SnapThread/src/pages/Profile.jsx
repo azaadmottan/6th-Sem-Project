@@ -17,10 +17,31 @@ function Profile() {
 
     const [userPost, setUserPost] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [userProfilePicture, setUserProfilePicture] = useState(null);
+    const [aboutUser, setAboutUser] = useState("");
 
     useEffect(() => {
-    
+        
+        confService.getUserProfileData({ userId }).then((profileData) => {
+
+            const avatarId = profileData.documents[0].avatarId;
+            const aboutUser =  profileData.documents[0].aboutUser;
+
+            confService.getUserProfilePicture(avatarId).then((picture) => {
+
+                if (picture) {
+
+                    setUserProfilePicture(picture);
+                }
+                else {
+
+                    setUserProfilePicture(flag);
+                }
+            });
+
+            setAboutUser(aboutUser);
+        });
+
         confService.getUserPosts({ userId }).then((posts) => {
 
             if(posts) {
@@ -43,8 +64,17 @@ function Profile() {
         </div>
 
         <div className="w-full">
-            <div className="w-32 m-auto relative">
-                <img src={flag} alt="User Avatar" className="w-32 mt-6 rounded-full bg-gradient-to-r from-[#db02be] via-[#fc0202] to-[#f5e904]" />
+            <div className="w-40 m-auto relative">
+                <div className="flex items-center justify-center">
+                    {
+                    (!loading) ? (
+
+                        <img src={userProfilePicture ? userProfilePicture : flag} alt="User Avatar" className="w-40 h-40 mt-6 rounded-full object-center object-contain p-1 bg-gradient-to-r from-[#db02be] via-[#fc0202] to-[#f5e904] md:hover:cursor-zoom-out md:hover:scale-150 md:transition-all md:delay-75 md:hover:z-20 relative" />
+                    ) : (
+                        <div className='w-20 h-20 border-2 border-[#df2121] rounded-full animate-spin border-t-transparent'></div>
+                    )
+                    }
+                </div>
                 
                 <div className=" absolute bottom-4 right-0">
                     <ToolTip text={"Edit Profile"}>
@@ -64,6 +94,8 @@ function Profile() {
 
             <h2 className="text-xl dark:text-white font-bold italic">@ {userName}</h2>
             <h4 className="mt-2 text-sm dark:text-white">{email}</h4>
+
+            <h5 className="mt-4 w-72 m-auto text-center dark:text-white">About User: {aboutUser}</h5>
         </div>
 
         <div className="mt-8">
@@ -86,7 +118,7 @@ function Profile() {
                             </div>
                         ))
                     ) : (
-                        <div className='w-full h-16 bg-white rounded-xl flex items-center justify-center'>
+                        <div className='w-full h-16 bg-white rounded-xl flex items-center justify-center dark:bg-[#0d043c]'>
                             <h2 className='text-xl font-normal text-red-600 animate-bounce dark:text-white'>No Post has been Found.</h2>
                         </div>
                     )

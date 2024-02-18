@@ -76,35 +76,37 @@ function Post() {
     }
 
     
-    useEffect(() => {
-        
-        const fetchLikes = async() => {
-    
-            try {
-                
-                const featuredImage = post?.featuredImage;
-                    
-                await confService.getLikes({ featuredImage }).then((like) => {
-    
-                    like.documents.map((post) => {
-    
-                        if (post.userId === userId){
-                            
-                            setTotalLikes(like.total);
-                            setLike(true);
-                        }
-                    })
-                    
-                });
-            } catch (error) {
-                
-            }
-    
+    const fetchLikes = async() => {
+
+        try {
+            
+            const featuredImage = await post?.featuredImage;
+            await confService.getLikes({ featuredImage }).then((like) => {
+
+                like.documents.map((post) => {
+
+                    if (post.userId === userId){
+                        
+                        setLike(true);
+                    }
+                })
+                setTotalLikes(like.total);
+            });
+        } catch (error) {
+            
         }
 
+    }
+
+    setTimeout(() => {
+        
         fetchLikes();
-    }, [like]);
+    }, 1200);
     
+    // useEffect(() => {
+        
+    //     // fetchLikes();
+    // }, [like]);
 
     const [comment, setComment] = useState(false);
 
@@ -157,7 +159,11 @@ function Post() {
             
         }
     }
-    // fetchComments();
+
+    setTimeout(() => {
+        
+        // fetchComments();
+    }, 1200);
 
     useEffect(() => {
         
@@ -255,7 +261,7 @@ function Post() {
                     {
                         (comment) ? (
                             <>
-                            <div className='mt-6 bg-white px-4 py-4 rounded-xl'>
+                            <div className='mt-6 bg-white px-4 py-4 rounded-xl dark:bg-[#0e125d] dark:text-white'>
                                 <div className='h-[50vh] overflow-y-scroll'>
 
                                     {
@@ -264,7 +270,7 @@ function Post() {
 
                                             <div key={commentItem.$id}  className='w-full flex items-center justify-start'>
                                             
-                                                <div className='bg-zinc-200 w-[60%] flex items-center  gap-4 text-lg px-6 py-1 mt-4 rounded-full'>
+                                                <div className='bg-zinc-200 w-[60%] flex items-center  gap-4 text-lg px-6 py-1 mt-4 rounded-tr-2xl rounded-b-2xl dark:bg-gradient-to-br dark:from-[#d200c0] dark:to-[#f82852]'>
                                                 <div className='flex items-center gap-4'>
                                                     <FaUser size={"23px"} />
                                                     <div className='flex flex-col'>
@@ -279,13 +285,13 @@ function Post() {
                                             </div>
                                         ) : (
 
-                                            <div key={commentItem.$id} className='w-full flex items-center justify-end'>
+                                            <div key={commentItem.$id} className='w-full flex items-center justify-end px-4'>
 
-                                            <div className='bg-zinc-200 w-[60%] flex items-center  gap-4 text-lg px-6 py-1 mt-4 rounded-full'>
+                                            <div className='bg-zinc-200 w-[60%] flex items-center  gap-4 text-lg px-6 py-1 mt-4 rounded-t-2xl rounded-bl-2xl dark:bg-gradient-to-br dark:from-[#d200c0] dark:to-[#f82852]'>
                                                 <div className='flex items-center gap-4'>
                                                     <FaUser size={"23px"} />
                                                     <div className='flex flex-col'>
-                                                    <span className='text-sm font-semibold tracking-wider'>@{commentItem.userName}</span>
+                                                    <span className='text-sm font-semibold tracking-widest italic'>@{commentItem.userName}</span>
                                                         <span className='text-md'>
                                                             {commentItem.commentContent}
                                                         </span>
@@ -308,7 +314,7 @@ function Post() {
                                     <input 
                                         type="text" 
                                         placeholder="Add a comment on post..." 
-                                        className='w-full px-3 py-3 text-lg font-medium outline-none border-2 rounded-xl focus:border-blue-600'
+                                        className='w-full px-3 py-3 text-lg tracking-wider font-medium outline-none border-2 rounded-xl focus:border-blue-600 dark:bg-[#030131] dark:text-white'
                                         {...register("commentContent", {required: true})}
                                     />
 

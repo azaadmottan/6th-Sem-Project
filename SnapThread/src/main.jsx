@@ -82,7 +82,7 @@ const router = createBrowserRouter([
          {
             path: "/user-profile",
             element: (
-               <ProtectRoutes>
+               <ProtectRoutes authentication={true}>
                   <Profile />
                </ProtectRoutes>
             )
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
          {
             path: "/user/edit-user-profile",
             element: (
-               <ProtectRoutes>
+               <ProtectRoutes authentication={true}>
                   <EditProfile />
                </ProtectRoutes>
             )
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
          {
             path: "/all-posts",
             element: (
-               <ProtectRoutes authentication>
+               <ProtectRoutes authentication={true}>
                   <AllPosts />
                </ProtectRoutes>
             )
@@ -106,7 +106,7 @@ const router = createBrowserRouter([
          {
             path: "/add-new-post",
             element: (
-               <ProtectRoutes authentication>
+               <ProtectRoutes authentication={true}>
                   <AddNewPost />
                </ProtectRoutes>
             )
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
          {
             path: "/edit-post/:slug",
             element: (
-               <ProtectRoutes authentication>
+               <ProtectRoutes authentication={true}>
                   <EditPost />
                </ProtectRoutes>
             )
@@ -122,7 +122,7 @@ const router = createBrowserRouter([
          {
             path: "/post/:slug",
             element: (
-               <ProtectRoutes authentication>
+               <ProtectRoutes authentication={true}>
                   <Post />
                </ProtectRoutes>
             )

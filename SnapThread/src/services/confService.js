@@ -302,17 +302,39 @@ class ConfService {
 
     // create Profile Picture 
 
-    async createProfile ({ userId, avatarId }) {
+    async createProfile ({ userId, avatarId, aboutUser }) {
 
         try {
-            
+
+            const existingProfile = await this.database.listDocuments(
+                config.appWriteDatabaseId,
+                config.appWriteAvatarCollectionId,
+                [
+                    Query.equal("userId", userId),
+                ]
+            );
+
+            if (existingProfile.documents.length > 0) {
+
+                const profileDocumentId = existingProfile.documents[0].$id;
+                const profilePictureId = existingProfile.documents[0].avatarId;
+                await this.deleteProfilePicture(profilePictureId);
+
+                await this.database.deleteDocument(
+                    config.appWriteDatabaseId,
+                    config.appWriteAvatarCollectionId,
+                    profileDocumentId
+                );
+            }
+
             return await this.database.createDocument(
                 config.appWriteDatabaseId,
                 config.appWriteAvatarCollectionId,
                 ID.unique(),
                 {
                     userId,
-                    avatarId
+                    avatarId,
+                    aboutUser
                 }
             );
 
@@ -338,6 +360,54 @@ class ConfService {
             
             throw error;
         }
+    }
+
+    // delete Profile Picture
+
+    async deleteProfilePicture ( fileId ) {
+
+        try {
+            await this.bucket.deleteFile(
+                config.appWriteBucketId,
+                fileId,
+            );
+            
+            return true;            
+        } catch (error) {
+            
+            throw error;
+        }
+    }
+
+    // get User Profile Data
+
+    async getUserProfileData ({ userId }) {
+
+        try {
+            
+            const profileData = await this.database.listDocuments(
+                config.appWriteDatabaseId,
+                config.appWriteAvatarCollectionId,
+                [
+                    Query.equal("userId", userId),
+                ]
+            );
+
+            return profileData;
+        } catch (error) {
+            
+            throw error;
+        }
+    }
+
+    // get User Profile Picture
+
+    async getUserProfilePicture ( fileId ) {
+
+        return this.bucket.getFilePreview(
+            config.appWriteBucketId,
+            fileId,
+        )
     }
 }
 

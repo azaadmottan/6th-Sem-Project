@@ -4,7 +4,6 @@ const initialState = {
 
     status: false,
     userData: null,
-    mode: "light"
 }
 
 const authSlicer = createSlice({
