@@ -260,6 +260,8 @@ class ConfService {
         }
     }
 
+    // get Likes on post
+
     async getLikes ({ featuredImage }) {
 
         try {
@@ -274,6 +276,67 @@ class ConfService {
         } catch (error) {
             
             console.log(`\nSomething went wrong while getting likes on post !\nError: ${error}`);
+        }
+    }
+
+    // get User Posts
+
+    async getUserPosts ({ userId }) {
+
+        try {
+
+            return await this.database.listDocuments(
+                config.appWriteDatabaseId,
+                config.appWriteCollectionId,
+                [
+                    Query.equal("userId", userId),
+                ]
+            );
+            
+        } catch (error) {
+            
+            throw error;
+        }
+    }
+
+
+    // create Profile Picture 
+
+    async createProfile ({ userId, avatarId }) {
+
+        try {
+            
+            return await this.database.createDocument(
+                config.appWriteDatabaseId,
+                config.appWriteAvatarCollectionId,
+                ID.unique(),
+                {
+                    userId,
+                    avatarId
+                }
+            );
+
+        } catch (error) {
+            
+            throw error;
+        }
+    }
+
+    // upload User Profile Picture
+
+    async uploadProfilePicture ( file ) {
+
+        try {
+            
+            return await this.bucket.createFile(
+                config.appWriteBucketId,
+                ID.unique(),
+                file,
+            );
+
+        } catch (error) {
+            
+            throw error;
         }
     }
 }

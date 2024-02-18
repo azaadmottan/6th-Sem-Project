@@ -25,7 +25,7 @@ function ToolTip({ text, left, right, children }) {
         {
             showTooltip && (
 
-            <div className={`absolute ${left} ${right} z-10 p-2 bg-gray-900 bg-opacity-85 text-white tracking-wider font-medium text-sm rounded-lg shadow-md whitespace-nowrap top-14 left-1/2 transform -translate-x-1/2`}>
+            <div className={`absolute ${left} ${right} z-10 p-2 bg-gray-900 bg-opacity-96 text-white tracking-wider font-medium text-sm rounded-lg shadow-md whitespace-nowrap top-14 left-1/2 transform -translate-x-1/2`}>
 
                 {text}
 

@@ -39,7 +39,7 @@ function App() {
 
       <Header />
 
-         <main className={`${!isHomePage && "dark:bg-[#0d043c] py-8 min-h-[80vh]"}`}>
+         <main className={`${!isHomePage && "dark:bg-[#0d043c] py-8 min-h-[85vh]"}`}>
 
             <Outlet />
 

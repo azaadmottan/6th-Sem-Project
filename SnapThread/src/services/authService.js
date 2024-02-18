@@ -6,6 +6,7 @@ class AuthService {
 
     client = new Client;
     account;
+    // users = new Users(this.client);
 
     constructor () {
 
@@ -91,6 +92,19 @@ class AuthService {
         }
     }
 
+    // update User Profile
+    
+    async updateUserProfile ({ userId, userName, password }) {
+
+        try {
+            
+            return (await this.account.updateName(userName),
+            await this.account.updatePassword(password));
+        } catch (error) {
+            
+            throw error;
+        }
+    }
 }
 
 // create an object of the "AuthService" class 

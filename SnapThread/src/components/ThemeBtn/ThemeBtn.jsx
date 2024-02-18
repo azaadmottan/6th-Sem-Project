@@ -38,7 +38,7 @@ function ThemeBtn() {
     
     return (
     <>
-        <ToolTip text={`Switch to ${mode === "light" ? "Dark" : "Light"} mode.`} left="-left-10">
+        <ToolTip text={`Switch to ${mode === "light" ? "Dark" : "Light"} mode.`} left="-left-20">
 
         <button 
             className="bg-zinc-200 p-3 rounded-full hover:bg-zinc-300 dark:bg-zinc-100 dark:hover:bg-white"

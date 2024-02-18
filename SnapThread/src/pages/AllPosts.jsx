@@ -24,13 +24,13 @@ function AllPosts() {
     return (
 
     <>
-    <div className='w-10/12 m-auto px-6 py-8 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#030131]'>
+    <div className='w-10/12 m-auto px-6 py-8 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#15016e]'>
 
         <div className='text-center text-black font-medium text-3xl dark:text-white'>
             <h2>Featured Images</h2>
         </div>
 
-        <div className='flex flex-wrap p-4 mt-4'>
+        <div className='dark:bg-[#0d043c] flex flex-wrap p-4 mt-4 rounded-xl'>
 
             {(!loading) ? (
 
@@ -46,7 +46,7 @@ function AllPosts() {
                         ))
                     ) : (
                         <div className='w-full h-16 bg-white rounded-xl flex items-center justify-center'>
-                            <h2 className='text-xl font-normal text-red-600 animate-bounce'>No Post has been Found.</h2>
+                            <h2 className='text-xl font-normal text-red-600 animate-bounce dark:text-white'>No Post has been Found.</h2>
                         </div>
                     )
                     

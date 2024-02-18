@@ -18,6 +18,8 @@ import Post from "./pages/Post.jsx";
 import AllPosts from "./pages/AllPosts.jsx";
 import EditPost from "./pages/EditPost.jsx";
 import HandleRoute from "./pages/HandleRoute.jsx";
+import Profile from "./pages/Profile.jsx";
+import EditProfile from "./pages/EditProfile.jsx";
 
 
 const router = createBrowserRouter([
@@ -74,6 +76,22 @@ const router = createBrowserRouter([
             element: (
                <ProtectRoutes authentication={false}>
                   <SignIn />
+               </ProtectRoutes>
+            )
+         },
+         {
+            path: "/user-profile",
+            element: (
+               <ProtectRoutes>
+                  <Profile />
+               </ProtectRoutes>
+            )
+         },
+         {
+            path: "/user/edit-user-profile",
+            element: (
+               <ProtectRoutes>
+                  <EditProfile />
                </ProtectRoutes>
             )
          },
