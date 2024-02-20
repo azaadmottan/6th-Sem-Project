@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Logo, LogoutBtn, ThemeBtn, ToolTip } from "../index.js";
 import { useSelector } from "react-redux";
 import { FaRegUserCircle } from "react-icons/fa";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IoClose } from "react-icons/io5";
 
 
 function Header() {
@@ -71,12 +73,15 @@ function Header() {
         }
     });
 
+    const [openMenu, setOpenMenu] = useState(false);
+
     return (
         <>
         <header className="sticky top-0 z-10">
-            <nav className="flex items-center justify-between bg-white px-6 py-5 font-semibold dark:bg-gradient-to-r dark:from-[#2900a2] dark:to-[#eb042b] dark:text-white">
-            <ul className="flex items-center gap-4">
-                <div className="flex items-center">
+            <nav className="flex items-center justify-between lg:flex lg:flex-row lg:items-center lg:justify-between bg-white shadow-lg px-6 py-5 font-semibold dark:bg-gradient-to-r dark:from-[#2900a2] dark:to-[#eb042b] dark:text-white relative">
+
+            <ul className="lg:flex lg:flex-row lg:items-center lg:gap-4">
+                <div className="flex items-center lg:flex lg:items-center">
                 <Link to="/" className="flex items-center">
 
                     <ToolTip text="Explore SnapThread">
@@ -84,6 +89,8 @@ function Header() {
                     </ToolTip>
                 </Link>
                 </div>
+
+                <div className={`absolute lg:static top-[84px] left-0 bg-black bg-opacity-75 w-full lg:w-auto lg:bg-transparent flex flex-col items-center justify-center gap-2 lg:flex lg:flex-row lg:gap-4 ${openMenu ? 'block' : 'hidden'}`}>
                 {navItems.map((item) =>
                 item.active ? (
                     <button
@@ -95,9 +102,10 @@ function Header() {
                     </button>
                 ) : null
                 )}
+                </div>
             </ul>
 
-            <ul className="flex items-center gap-4">
+            <ul className={`absolute lg:static top-[220px] left-0 bg-black bg-opacity-75 w-full lg:w-auto p-4 lg:bg-transparent flex flex-col items-center justify-center gap-2 lg:p-0 lg:flex lg:flex-row lg:items-center lg:gap-4 ${openMenu ? 'block' : 'hidden'}`}>
                 {impNavItems.map((item) =>
                 item.active ? (
                     <button
@@ -140,7 +148,7 @@ function Header() {
                         {open && (
 
                             <div 
-                                className="bg-white w-32 rounded-xl px-3 py-2 flex items-center flex-col gap-2 absolute -left-16 top-12"
+                                className="bg-white w-32 rounded-xl px-3 py-2 flex items-center flex-col gap-2 absolute lg:-left-16 lg:top-12 -right-32 -top-28"
                                 ref={menuRef}
                             >
                                 
@@ -178,26 +186,22 @@ function Header() {
                 )
                 }
 
-                {/* {authStatus && (
-                <button
-                    className="px-3 py-2 rounded-full bg-zinc-200 font-medium text-black hover:bg-zinc-300"
-                    onClick={() => navigate("/all-posts")}
-                >
-                    All Posts
-                </button>
-                )}
-
-                {authStatus && (
-                <button
-                    className="px-3 py-2 rounded-full bg-zinc-200 font-medium text-black hover:bg-zinc-300"
-                    onClick={() => navigate("/add-new-post")}
-                >
-                    Add Post
-                </button>
-                )}
-
-                {authStatus && <LogoutBtn />} */}
             </ul>
+
+            <div className="lg:hidden flex items-center justify-center">
+                <div onClick={() => setOpenMenu(!openMenu)}>
+                    {
+                        !(openMenu) ? (
+
+                            <RxHamburgerMenu className="text-3xl font-bold cursor-pointer" />
+                        ) : (
+                            
+                            <IoClose className="text-3xl font-bold cursor-pointer" />
+                        )
+                    }
+                </div>
+            </div>
+
             </nav>
         </header>
         </>

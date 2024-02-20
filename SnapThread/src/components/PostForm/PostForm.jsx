@@ -113,17 +113,17 @@ function PostForm({ post }) {
 
     return (
     <>
-    <div className='w-8/12 m-auto px-6 py-8 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#15016e]'>
+    <div className='lg:w-8/12 md:w-11/12 w-[95%] m-auto md:px-6 md:py-8 px-2 py-4 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#15016e]'>
 
-        <div className='text-center text-red-600 font-medium text-4xl dark:text-white'>
+        <div className='text-center text-red-600 font-medium lg:text-4xl md:text-2xl text-xl dark:text-white'>
             <h2>Create New Post</h2>
         </div>
 
         <form onSubmit={handleSubmit(submit)}>
 
-        <div className='bg-white flex flex-wrap max-w-[100%] items-center justify-between px-12 py-8 mt-8 rounded-xl border-2 border-red-600 dark:bg-[#030131]'>
+        <div className='bg-white flex flex-col md:flex md:flex-row max-w-[100%] items-center justify-between px-2 py-4 md:px-4 md:py-8 lg:px-12 lg:py-8 mt-8 rounded-xl border-2 border-red-600 dark:bg-[#030131]'>
 
-                <div className='w-[48%]'>
+                <div className='md:w-[48%] w-full'>
                     <div 
                         className='w-[100%] h-[30vh] flex flex-col items-center justify-center border-blue-600 border-2 border-dashed rounded-lg cursor-pointer'
                         title="Select Image File"
@@ -166,11 +166,11 @@ function PostForm({ post }) {
                         }
                     </div>
 
-                    <div className='w-full flex items-center justify-between mt-4 bg-zinc-100 rounded-lg p-3'>
+                    <div className='w-full flex items-center justify-between mt-4 bg-zinc-100 rounded-lg md:p-3 p-1'>
 
-                        <div className='flex items-center gap-2 text-lg'>
+                        <div className='flex items-center gap-2 md:text-lg text-sm'>
                             <AiFillFileImage color={"#E60023"} size={"22px"} />
-                            <span className='font-medium w-56 text-ellipsis overflow-hidden'>
+                            <span className='font-medium lg:w-44 md:w-44 text-ellipsis overflow-hidden'>
                             {
                                 fileName
                             }
@@ -189,10 +189,10 @@ function PostForm({ post }) {
                         </span>
                     </div>
 
-                    <div className='mt-6'>
+                    <div className='md:mt-6 mt-2'>
                         <input type="text" 
                             placeholder='Image title slug' 
-                            className='w-full px-3 py-2 text-lg text-zinc-800 font-medium outline-none  border-2 border-zinc-400 rounded-lg' 
+                            className='w-full px-2 py-1 md:px-3 md:py-2 text-lg text-zinc-800 font-medium outline-none  border-2 border-zinc-400 rounded-lg' 
                             {...register("slug", {required: true})}
                             onInput={(e) => {
 
@@ -202,20 +202,20 @@ function PostForm({ post }) {
                     </div>
                 </div>
 
-                <div className='w-[48%]'>
+                <div className='md:w-[48%] w-full mt-4 md:mt-0'>
                     <div>
                         <input type="text" 
                             placeholder='Add your title' 
-                            className='w-full text-3xl text-zinc-800 font-medium outline-none px-2 py-1 border-b-2 border-b-zinc-400 rounded-lg' 
+                            className='w-full text-xl md:text-3xl text-zinc-800 font-medium outline-none px-2 py-1 border-b-2 border-b-zinc-400 rounded-lg' 
                             {...register("title", { required: true })}
                         />
                     </div>
 
                     <div className='mt-8 flex items-center gap-4 bg-zinc-100 rounded-xl p-2'>
 
-                        <span className='px-4 py-2 bg-red-600 text-white text-2xl rounded-full'>H</span>
+                        <span className='px-4 py-2 bg-red-600 text-white text-lg md:text-2xl rounded-full'>H</span>
 
-                        <div className='flex flex-col text-zinc-800 font-medium'>
+                        <div className='flex flex-col text-zinc-800 text-sm md:text-[16px] font-medium'>
 
                             <span className='mb-1'>Himanshi | Start a blog | Blogging Tips | Blog Traffic</span>
 
@@ -223,7 +223,7 @@ function PostForm({ post }) {
                         </div>
                     </div>
 
-                    <div className='mt-8'>
+                    <div className='md:mt-8 mt-4'>
                         <input type="text" 
                             placeholder='Tell everyone what your Pin is about' 
                             className='w-full text-lg text-zinc-800 font-medium outline-none border-b-2 border-b-zinc-400 px-2 py-1 rounded-lg'
@@ -231,8 +231,8 @@ function PostForm({ post }) {
                         />
                     </div>
 
-                    <div className='mt-8'>
-                        <label htmlFor="status" className='inline-block text-lg mb-3 font-medium dark:text-white'>Select Status</label>
+                    <div className='md:mt-8 mt-4'>
+                        <label htmlFor="status" className='inline-block text-sm md:text-lg mb-3 font-medium dark:text-white'>Select Status</label>
                         <select 
                             className='w-full px-3 py-2 text-lg text-zinc-800 font-medium outline-none  border-2 border-zinc-400 rounded-lg cursor-pointer' 
                             id='status'

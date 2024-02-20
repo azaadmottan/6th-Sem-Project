@@ -62,17 +62,17 @@ function SignUp() {
     return (
     <>
         
-        <div className='w-[500px] m-auto p-10 rounded-2xl bg-zinc-200 bg-opacity-80'>
+        <div className='w-[88vw] md:w-[500px] m-auto px-2 py-4 md:p-10 rounded-2xl bg-zinc-200 bg-opacity-80'>
             <div className='flex items-center justify-center'>
-                <Logo textSize={"text-2xl"}/>
+                <Logo textSize={"md:text-2xl text-xl"}/>
             </div>
 
             <div className='text-center'>
-                <h2 className='text-2xl mt-3'>Welcome to SnapThread</h2>
+                <h2 className='md:text-2xl mt-3'>Welcome to SnapThread</h2>
                 <p className='text-zinc-600'>Find new ideas to try</p>
             </div>
 
-            <div className='mt-2 px-6 py-4 text-gray-700 bg-white rounded-xl'>
+            <div className='mt-2 px-2 py-4 md:px-6 md:py-4 text-gray-700 bg-white rounded-xl'>
                 <div className='flex flex-wrap flex-col'>
                     <form onSubmit={handleSubmit(create)}>
                         <div>
@@ -108,7 +108,7 @@ function SignUp() {
                             />
                         </div>
                         <div>
-                            <p className='mb-6 font-semibold'>Already have an account? <Link to="/signIn" className='text-blue-600 hover:text-red-600'>Sign in</Link></p>
+                            <p className='mb-6 font-semibold text-sm md:text-[16px]'>Already have an account? <Link to="/signIn" className='text-blue-600 hover:text-red-600'>Sign in</Link></p>
                         </div>
                         
                         {

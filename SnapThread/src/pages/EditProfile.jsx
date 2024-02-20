@@ -56,20 +56,20 @@ function EditProfile() {
     return (
 
     <>
-    <div className='w-8/12 m-auto px-6 py-8 bg-zinc-200 bg-opacity-70 rounded-lg  dark:bg-[#15016e]'>
+    <div className='lg:w-8/12 md:w-11/12 w-[95%] m-auto md:px-6 md:py-8 px-2 py-4 bg-zinc-200 bg-opacity-70 rounded-lg  dark:bg-[#15016e]'>
 
-        <div className='text-center text-black font-medium text-3xl dark:text-white'>
+        <div className='text-center text-black font-medium lg:text-3xl md:text-2xl text-xl dark:text-white'>
             <h2>Edit Your Personal Information</h2>
         </div>
 
 
         <form onSubmit={handleSubmit(submitProfile)}>
-        <div className='bg-white flex flex-wrap max-w-[100%] items-center justify-between px-12 py-8 mt-8 rounded-xl border-2 border-red-600 dark:bg-[#030131]'>
+        <div className='bg-white flex flex-col md:flex md:flex-row max-w-[100%] items-center justify-between px-2 py-4 md:px-12 md:py-8 lg:px-12 lg:py-8 mt-8 rounded-xl border-2 border-red-600 dark:bg-[#030131]'>
 
 
-            <div className='w-[48%]'>
+            <div className='md:w-[48%] w-full'>
                 <div 
-                    className='w-[100%] h-[38vh] flex flex-col items-center justify-center border-blue-600 border-2 border-dashed rounded-lg cursor-pointer'
+                    className='w-[100%] h-[38vh] flex flex-col items-center justify-center border-blue-600 border-2 border-dashed active:border-red-800 rounded-lg cursor-pointer'
                     title="Select Image File"
                     
                     onClick={() => document.querySelector(".input-file").click()}
@@ -110,11 +110,11 @@ function EditProfile() {
                     }
                 </div>
 
-                <div className='w-full flex items-center justify-between mt-4 bg-zinc-100 rounded-lg p-3'>
+                <div className='w-full flex items-center justify-between mt-4 bg-zinc-100 rounded-lg md:p-3 p-1'>
 
-                    <div className='flex items-center gap-2 text-lg'>
+                    <div className='flex items-center gap-2 md:text-lg text-sm'>
                         <AiFillFileImage color={"#E60023"} size={"22px"} />
-                        <span className='font-medium w-56 text-ellipsis overflow-hidden'>
+                        <span className='font-medium lg:w-44 md:w-44 text-ellipsis overflow-hidden'>
                         {
                             fileName
                         }
@@ -135,7 +135,7 @@ function EditProfile() {
 
             </div>
 
-            <div className="w-[48%] font-medium">
+            <div className="md:w-[48%] mt-6 md:mt-0 w-full font-medium">
                 <div>
                     <label htmlFor="username" className="dark:text-white">Username</label>
                     <input type="text" {...register("userName", {required: true,})} id='username' placeholder='Enter username' 

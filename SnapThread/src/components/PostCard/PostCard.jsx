@@ -18,17 +18,17 @@ function PostCard({ $id, title, featuredImage }) {
                         <img 
                             src={confService.filePreview(featuredImage)} 
                             alt={title} 
-                            className='rounded-xl hover:scale-110 transition ease-linear' 
+                            className='rounded-xl lg:hover:scale-110 lg:transition lg:ease-linear' 
                         />
                     </div>
 
                     {
-                        <h2 className='ml-3 my-3 text-xl font-semibold hover:text-[#df2121]'>
+                        <h2 className='lg:ml-3 my-3 text-sm lg:text-xl font-semibold lg:hover:text-[#df2121]'>
                             { title }
                         </h2>
                     }
 
-                    <div className='flex items-center ml-3 my-2 gap-4'>
+                    <div className='flex items-center md:flex-col md:items-start md:justify-start lg:ml-3 lg:my-2 gap-4'>
                         {/* <FaRegHeart size={"25px"} /> */}
                         <span className='flex items-center gap-2 text-md font-medium'>
                             <FaHeart color={"#ff2626"} size={"23px"} /> Likes

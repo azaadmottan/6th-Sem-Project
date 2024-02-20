@@ -57,9 +57,9 @@ function Profile() {
 
     <>
     
-    <div className='w-10/12 m-auto px-6 py-8 bg-zinc-200 bg-opacity-70 rounded-lg  dark:bg-[#15016e]'>
+    <div className='w-[90%] md:w-10/12 m-auto px-2 py-4 md:px-6 md:py-8 bg-zinc-200 bg-opacity-70 rounded-lg  dark:bg-[#15016e]'>
 
-        <div className='text-center text-black font-medium text-3xl dark:text-white'>
+        <div className='text-center text-black font-medium text-xl md:text-3xl dark:text-white'>
             <h2>Your Personal Dashboard</h2>
         </div>
 
@@ -69,7 +69,7 @@ function Profile() {
                     {
                     (!loading) ? (
 
-                        <img src={userProfilePicture ? userProfilePicture : flag} alt="User Avatar" className="w-40 h-40 mt-6 rounded-full object-center object-contain p-1 bg-gradient-to-r from-[#db02be] via-[#fc0202] to-[#f5e904] md:hover:cursor-zoom-out md:hover:scale-150 md:transition-all md:delay-75 md:hover:z-20 relative" />
+                        <img src={userProfilePicture ? userProfilePicture : flag} alt="User Avatar" className="w-40 h-40 mt-6 rounded-full object-center object-contain p-1 bg-gradient-to-r from-[#db02be] via-[#fc0202] to-[#f5e904] lg:hover:cursor-zoom-out lg:hover:scale-150 lg:transition-all lg:delay-75 lg:hover:z-20 relative" />
                     ) : (
                         <div className='w-20 h-20 border-2 border-[#df2121] rounded-full animate-spin border-t-transparent'></div>
                     )
@@ -92,18 +92,18 @@ function Profile() {
 
         <div className="mt-2 text-center tracking-wider">
 
-            <h2 className="text-xl dark:text-white font-bold italic">@ {userName}</h2>
+            <h2 className="text-lg md:text-xl dark:text-white font-bold italic">@ {userName}</h2>
             <h4 className="mt-2 text-sm dark:text-white">{email}</h4>
 
-            <h5 className="mt-4 w-72 m-auto text-center dark:text-white">About User: {aboutUser}</h5>
+            <h5 className="mt-4 w-[60vw] m-auto text-xs md:text-lg text-center dark:text-white">About User: {aboutUser}</h5>
         </div>
 
         <div className="mt-8">
-            <h3 className="text-2xl text-center font-medium dark:text-white">Your's Post</h3>
+            <h3 className="md:text-2xl text-xl text-center font-medium dark:text-white">Your's Post</h3>
 
         </div>
 
-        <div className='dark:bg-[#0d043c] flex flex-wrap p-4 mt-4 rounded-xl'>
+        <div className='dark:bg-[#0d043c] grid gap-4 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 p-4 mt-4 rounded-xl'>
 
             {(!loading) ? (
 
@@ -111,7 +111,7 @@ function Profile() {
 
                         userPost.map((post) => (
     
-                            <div key={post.$id} className='w-1/4 p-2'>
+                            <div key={post.$id} className='md:w-3/3 lg:w-4/4 md:p-2'>
     
                                 <PostCard {...post} />
     
@@ -119,17 +119,17 @@ function Profile() {
                         ))
                     ) : (
                         <div className='w-full h-16 bg-white rounded-xl flex items-center justify-center dark:bg-[#0d043c]'>
-                            <h2 className='text-xl font-normal text-red-600 animate-bounce dark:text-white'>No Post has been Found.</h2>
+                            <h2 className='text-lg md:text-xl font-normal text-red-600 animate-bounce dark:text-white'>No Post has been Found.</h2>
                         </div>
                     )
                     
                 ) : (
                     
-                    <div className='flex flex-col items-center justify-center w-full'>
+                    <div className='flex flex-col md:w-[75vw] m-auto items-center justify-center w-full'>
 
                         <div className='w-20 h-20 border-2 border-[#df2121] rounded-full animate-spin border-t-transparent'></div>
 
-                        <div className='flex items-center mt-10 bg-zinc-50 rounded-xl px-20 py-2'>
+                        <div className='flex items-center mt-10 bg-zinc-50 rounded-xl px-2 py-1 md:px-20 md:py-2'>
                             <Logo />
                         </div>
 

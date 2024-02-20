@@ -24,13 +24,13 @@ function AllPosts() {
     return (
 
     <>
-    <div className='w-10/12 m-auto px-6 py-8 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#15016e]'>
+    <div className='w-[90%] md:w-10/12 m-auto px-2 py-4 md:px-6 md:py-8 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#15016e]'>
 
-        <div className='text-center text-black font-medium text-3xl dark:text-white'>
+        <div className='text-center text-black font-medium text-xl md:text-3xl dark:text-white'>
             <h2>Featured Images</h2>
         </div>
 
-        <div className='dark:bg-[#0d043c] flex flex-wrap p-4 mt-4 rounded-xl'>
+        <div className='dark:bg-[#0d043c] grid gap-4 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 p-4 mt-4 rounded-xl'>
 
             {(!loading) ? (
 
@@ -38,7 +38,7 @@ function AllPosts() {
 
                         allPosts.map((post) => (
     
-                            <div key={post.$id} className='w-1/4 p-2'>
+                            <div key={post.$id} className='md:w-3/3 lg:w-4/4 md:p-2'>
     
                                 <PostCard {...post} />
     
@@ -52,11 +52,11 @@ function AllPosts() {
                     
                 ) : (
                     
-                    <div className='flex flex-col items-center justify-center w-full'>
+                    <div className='flex flex-col md:w-[75vw] m-auto  items-center justify-center w-full'>
 
                         <div className='w-20 h-20 border-2 border-[#df2121] rounded-full animate-spin border-t-transparent'></div>
 
-                        <div className='flex items-center mt-10 bg-zinc-50 rounded-xl px-20 py-2'>
+                        <div className='flex items-center mt-10 bg-zinc-50 rounded-xl px-2 py-1 md:px-20 md:py-2'>
                             <Logo />
                         </div>
 
