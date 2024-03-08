@@ -174,9 +174,9 @@ function Post() {
 
     return (
     <>
-        <div className='w-8/12 m-auto px-6 py-8 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#030131]'>
+        <div className='lg:w-8/12 md:w-11/12 w-[95%] m-auto px-2 py-4 md:px-6 md:py-8 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#030131]'>
 
-            <div className='text-center text-black font-medium text-3xl dark:text-white'>
+            <div className='text-center text-black font-medium lg:text-3xl md:text-2xl text-xl dark:text-white'>
                 <h2>Explore post at SnapThread</h2>
             </div>
 
@@ -195,10 +195,10 @@ function Post() {
                                 isAuthor && (
                                     <div className='flex items-center gap-4 absolute bottom-2 right-3'>
                                         <Link to={`/edit-post/${post.$id}`}>
-                                            <button className='bg-[#E60023] text-white rounded-xl px-4 py-2 hover:bg-[#c2001d]'>Edit</button>
+                                            <button className='bg-[#E60023] text-white rounded-xl px-3 py-1 md:px-4 md:py-2 hover:bg-[#c2001d]'>Edit</button>
                                         </  Link>
 
-                                        <button  className='bg-[#E60023] text-white rounded-xl px-4 py-2 hover:bg-[#c2001d]' onClick={deletePost}>Delete</button>
+                                        <button  className='bg-[#E60023] text-white rounded-xl px-3 py-1 md:px-4 md:py-2 hover:bg-[#c2001d]' onClick={deletePost}>Delete</button>
                                     </div>
                                 )
 
@@ -208,19 +208,19 @@ function Post() {
                     </div>
 
                     <div className='mt-6 bg-white px-4 py-4 rounded-xl relative dark:bg-[#0e125d] dark:text-white'>
-                        <h2 className='text-xl font-extrabold'>{post.title}</h2>
-                        <span className='absolute -top-3 right-2 bg-[#E60023] text-white px-2 rounded-full cursor-context-menu' title={`Status: ${post.status}`}>{post.status}</span>
+                        <h2 className='md:text-xl text-lg font-extrabold'>{post.title}</h2>
+                        <span className='absolute -top-2 right-2 bg-[#E60023] text-white px-2 text-xs sm:text-sm md:text-[18px] tracking-wider rounded-full cursor-context-menu' title={`Status: ${post.status}`}>{post.status}</span>
                     </div>
 
                     <div className='mt-6 bg-white px-4 py-4 rounded-xl dark:bg-[#0e125d] dark:text-white'>
-                        <h3 className='text-lg font-medium italic'>{post.content}</h3>
+                        <h3 className='text-[14px] tracking-wider md:text-lg font-medium italic'>{post.content}</h3>
                     </div>
 
-                    <div className='mt-6 bg-white px-4 py-4 rounded-xl select-none dark:bg-[#0e125d] dark:text-white'>
+                    <div className='mt-6 bg-white px-4 py-4 rounded-xl select-none dark:bg-[#0e125d] tracking-wider dark:text-white'>
 
-                        <div className='flex items-center my-2 gap-14'>
+                        <div className='flex items-center my-2 gap-8 md:gap-14'>
                             {/* <FaRegHeart size={"25px"} /> */}
-                            <span className='flex items-center gap-2 text-md font-semibold'>
+                            <span className='flex items-center gap-2 text-sm  md:text-md font-semibold'>
 
                                 <span className='cursor-pointer' onClick={() => handleLike()}>
                                     {
@@ -236,7 +236,7 @@ function Post() {
                                 </span> {totalLikes + " Likes"}
 
                             </span>
-                            <span className='flex items-center gap-2 text-md font-semibold'>
+                            <span className='flex items-center gap-2 text-sm md:text-md font-semibold'>
                                 <span className='cursor-pointer' onClick={() => handleComment()}>
 
                                     {
@@ -261,7 +261,7 @@ function Post() {
                     {
                         (comment) ? (
                             <>
-                            <div className='mt-6 bg-white px-4 py-4 rounded-xl dark:bg-[#0e125d] dark:text-white'>
+                            <div className='mt-6 bg-white px-2 py-2 md:px-4 md:py-4 rounded-xl dark:bg-[#0e125d] dark:text-white'>
                                 <div className='h-[50vh] overflow-y-scroll'>
 
                                     {
@@ -270,12 +270,12 @@ function Post() {
 
                                             <div key={commentItem.$id}  className='w-full flex items-center justify-start'>
                                             
-                                                <div className='bg-zinc-200 w-[60%] flex items-center  gap-4 text-lg px-6 py-1 mt-4 rounded-tr-2xl rounded-b-2xl dark:bg-gradient-to-br dark:from-[#d200c0] dark:to-[#f82852]'>
-                                                <div className='flex items-center gap-4'>
+                                                <div className='bg-zinc-200 w-[88%] md:w-[60%] flex items-center  gap-4 text-lg px-2 py-1 md:px-6 md:py-1 mt-4 rounded-tr-2xl rounded-b-2xl dark:bg-gradient-to-br dark:from-[#d200c0] dark:to-[#f82852]'>
+                                                <div className='flex items-center gap-2 md:gap-4'>
                                                     <FaUser size={"23px"} />
                                                     <div className='flex flex-col'>
-                                                        <span className='text-sm font-semibold tracking-wider'>@{commentItem.userName}</span>
-                                                        <span className='text-md'>
+                                                        <span className='text-xs md:text-sm font-semibold tracking-wider italic'>@{commentItem.userName}</span>
+                                                        <span className='text-sm md:text-md'>
                                                             {commentItem.commentContent}
                                                         </span>
                                                     </div>
@@ -287,12 +287,12 @@ function Post() {
 
                                             <div key={commentItem.$id} className='w-full flex items-center justify-end px-4'>
 
-                                            <div className='bg-zinc-200 w-[60%] flex items-center  gap-4 text-lg px-6 py-1 mt-4 rounded-t-2xl rounded-bl-2xl dark:bg-gradient-to-br dark:from-[#d200c0] dark:to-[#f82852]'>
-                                                <div className='flex items-center gap-4'>
+                                            <div className='bg-zinc-200 w-[88%] md:w-[60%] flex items-center  gap-4 text-lg px-2 py-1 md:px-6 md:py-1 mt-4 rounded-t-2xl rounded-bl-2xl dark:bg-gradient-to-br dark:from-[#d200c0] dark:to-[#f82852]'>
+                                                <div className='flex items-center gap-2 md:gap-4'>
                                                     <FaUser size={"23px"} />
                                                     <div className='flex flex-col'>
-                                                    <span className='text-sm font-semibold tracking-widest italic'>@{commentItem.userName}</span>
-                                                        <span className='text-md'>
+                                                    <span className='text-xs md:text-sm font-semibold tracking-widest italic'>@{commentItem.userName}</span>
+                                                        <span className='text-sm md:text-md'>
                                                             {commentItem.commentContent}
                                                         </span>
                                                     </div>
@@ -314,13 +314,13 @@ function Post() {
                                     <input 
                                         type="text" 
                                         placeholder="Add a comment on post..." 
-                                        className='w-full px-3 py-3 text-lg tracking-wider font-medium outline-none border-2 rounded-xl focus:border-blue-600 dark:bg-[#030131] dark:text-white'
+                                        className='w-full px-2 py-2 md:px-3 md:py-3 text-sm md:text-lg tracking-wider md:font-medium outline-none border-2 rounded-xl focus:border-blue-600 dark:bg-[#030131] dark:text-white'
                                         {...register("commentContent", {required: true})}
                                     />
 
                                     <button 
                                         type='submit'
-                                        className='px-4 py-4 bg-[#eb2442] text-white rounded-xl hover:bg-[#ff082d]'
+                                        className='px-2 py-2 md:px-4 md:py-4 bg-[#eb2442] text-white rounded-xl hover:bg-[#ff082d]'
                                     ><FiSend size={"23px"} title='Post Comment...' /></button>
                                     </div>
                                     </form>

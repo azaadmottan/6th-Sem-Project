@@ -106,14 +106,16 @@ class ConfService {
 
     // get All Post
 
-    async getAllPost (query = [Query.equal("status", "active")]) {
+    async getAllPost () {
 
         try {
             
             return await this.database.listDocuments(
                 config.appWriteDatabaseId,
                 config.appWriteCollectionId,
-                query,
+                [
+                    Query.equal("status", "active")
+                ],
             )
         } catch (error) {
             

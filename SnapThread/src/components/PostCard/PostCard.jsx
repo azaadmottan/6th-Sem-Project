@@ -23,7 +23,7 @@ function PostCard({ $id, title, featuredImage }) {
                     </div>
 
                     {
-                        <h2 className='lg:ml-3 my-3 text-sm lg:text-xl font-semibold lg:hover:text-[#df2121]'>
+                        <h2 className='lg:ml-3 my-3 text-sm lg:text-xl font-semibold transition-all lg:hover:text-[#df2121]'>
                             { title }
                         </h2>
                     }

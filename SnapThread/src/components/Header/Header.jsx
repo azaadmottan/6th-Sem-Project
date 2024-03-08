@@ -144,6 +144,12 @@ function Header() {
 
                         <FaRegUserCircle size="27px" color="black"
                         />
+                        <span className="absolute top-0 right-0">
+                            <span className="relative flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#322cf7] opacity-96"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#402bfb]"></span>
+                            </span>
+                        </span>
 
                         {open && (
 

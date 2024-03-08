@@ -11,6 +11,7 @@ import LogoutBtn from "./Header/LogoutBtn";
 import Processing from "./Processing/Processing";
 import ThemeBtn from "./ThemeBtn/ThemeBtn";
 import ToolTip from "./ToolTip/ToolTip";
+import MiniPostCard from "./PostCard/MiniPostCard";
 
 export {
     Header,
@@ -22,6 +23,7 @@ export {
     LogoutBtn,
     PostForm,
     PostCard,
+    MiniPostCard,
     ProtectRoutes,
     Processing,
     ThemeBtn,
