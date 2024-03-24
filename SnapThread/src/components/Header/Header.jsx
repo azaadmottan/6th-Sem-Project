@@ -137,12 +137,12 @@ function Header() {
                 {authStatus && (
 
                     <div 
-                        className="bg-zinc-200 p-2 rounded-full hover:bg-zinc-300 dark:bg-zinc-100 dark:hover:bg-white cursor-pointer relative"
-                        onClick={() => setOpen(!open)}
+                        className="bg-zinc-200 p-2 rounded-full hover:bg-zinc-300 dark:bg-zinc-100 dark:hover:bg-white relative"
+                        onClick={() => setOpen(true)}
                         ref={profileRef} 
                     >
 
-                        <FaRegUserCircle size="27px" color="black"
+                        <FaRegUserCircle size="27px" className="cursor-pointer" color="black"
                         />
                         <span className="absolute top-0 right-0">
                             <span className="relative flex h-3 w-3">

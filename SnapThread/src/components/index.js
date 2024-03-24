@@ -12,6 +12,7 @@ import Processing from "./Processing/Processing";
 import ThemeBtn from "./ThemeBtn/ThemeBtn";
 import ToolTip from "./ToolTip/ToolTip";
 import MiniPostCard from "./PostCard/MiniPostCard";
+import ShowModal from "./Modal/ShowModal";
 
 export {
     Header,
@@ -27,5 +28,6 @@ export {
     ProtectRoutes,
     Processing,
     ThemeBtn,
-    ToolTip
+    ToolTip,
+    ShowModal
 }
