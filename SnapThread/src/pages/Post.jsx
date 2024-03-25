@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import confService from "../services/confService.js";
 // import authService from '../services/authService.js';
-import { Logo } from '../components/index.js';
+import { Logo, ShowModal } from '../components/index.js';
 import { FaRegHeart, FaHeart ,FaRegComment, FaComment, FaUser } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { useForm } from 'react-hook-form';
@@ -52,10 +52,14 @@ function Post() {
             if(status) {
 
                 confService.deleteFile(post.featuredImage);
-                navigate("/");
+                navigate("/all-posts");
             }
         })
     }
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleDeleteModal = () => setShowModal(true);
 
     const [like, setLike] = useState(false);
     const [totalLikes, setTotalLikes] = useState(0);
@@ -198,7 +202,7 @@ function Post() {
                                             <button className='bg-[#E60023] text-white rounded-xl px-3 py-1 md:px-4 md:py-2 hover:bg-[#c2001d]'>Edit</button>
                                         </  Link>
 
-                                        <button  className='bg-[#E60023] text-white rounded-xl px-3 py-1 md:px-4 md:py-2 hover:bg-[#c2001d]' onClick={deletePost}>Delete</button>
+                                        <button  className='bg-[#E60023] text-white rounded-xl px-3 py-1 md:px-4 md:py-2 hover:bg-[#c2001d]' onClick={() => handleDeleteModal()}>Delete</button>
                                     </div>
                                 )
 
@@ -206,6 +210,18 @@ function Post() {
                         </div>
 
                     </div>
+
+                    {
+                        showModal && (
+                            <ShowModal 
+                                title="Delete Post" 
+                                body="Are you sure you want to delete this post?"
+                                buttonText="Delete Post" 
+                                onClose={() => setShowModal(false)}
+                                onSubmitHandler={() => deletePost()}
+                            />
+                        )
+                    }
 
                     <div className='mt-6 bg-white px-4 py-4 rounded-xl relative dark:bg-[#0e125d] dark:text-white'>
                         <h2 className='md:text-xl text-lg font-extrabold'>{post.title}</h2>

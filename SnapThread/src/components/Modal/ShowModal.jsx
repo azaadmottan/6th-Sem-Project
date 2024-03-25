@@ -11,21 +11,21 @@ function ShowModal({
     return (
 
     <>
-    <div className="fixed z-10 top-0 left-0 h-full w-screen flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+    <div className="fixed z-10 top-0 left-0 h-full w-screen flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm select-none">
         <div className="bg-white px-6 py-4 rounded-lg md:w-96 dark:text-black">
 
             <div className="text-2xl font-bold mb-6">
                 <h3>{title}</h3>
             </div>
 
-            <div className="text-xl font-medium my-8">
+            <div className="text-lg font-medium my-8">
                 <p>{body}</p>
             </div>
 
             <div className="flex items-center justify-around">
 
                 <button 
-                    className="bg-zinc-400 font-semibold px-4 py-2 rounded-lg hover:bg-opacity-80"
+                    className="bg-zinc-300 font-semibold px-4 py-2 rounded-lg hover:bg-opacity-60"
                     onClick={() => (onClose())}
                 >Close</button>
                 <button 

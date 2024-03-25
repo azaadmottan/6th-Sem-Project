@@ -78,7 +78,7 @@ function Header() {
     return (
         <>
         <header className="sticky top-0 z-10">
-            <nav className="flex items-center justify-between lg:flex lg:flex-row lg:items-center lg:justify-between bg-white shadow-lg px-6 py-5 font-semibold dark:bg-gradient-to-r dark:from-[#2900a2] dark:to-[#eb042b] dark:text-white relative">
+            <nav className="flex items-center justify-between lg:flex lg:flex-row lg:items-center lg:justify-between bg-white shadow-lg px-6 py-5 font-semibold text-white lg:text-black dark:bg-gradient-to-r dark:from-[#2900a2] dark:to-[#eb042b] dark:text-white relative">
 
             <ul className="lg:flex lg:flex-row lg:items-center lg:gap-4">
                 <div className="flex items-center lg:flex lg:items-center">
@@ -194,7 +194,7 @@ function Header() {
 
             </ul>
 
-            <div className="lg:hidden flex items-center justify-center">
+            <div className="lg:hidden flex items-center justify-center text-black dark:text-white">
                 <div onClick={() => setOpenMenu(!openMenu)}>
                     {
                         !(openMenu) ? (

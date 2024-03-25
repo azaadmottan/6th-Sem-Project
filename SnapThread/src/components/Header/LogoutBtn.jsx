@@ -38,9 +38,9 @@ function LogoutBtn() {
                 showModal && (
 
                     <ShowModal 
-                        title="Logout Modal" 
-                        body="Are you sure you want to logout ?" 
-                        buttonText="Logout"
+                        title="Sign out Modal" 
+                        body="Are you sure you want to sign out ?" 
+                        buttonText="Sign Out"
                         onClose={() => setShowModal(false)} 
                         onSubmitHandler={() => logoutHandler()} 
                     />
