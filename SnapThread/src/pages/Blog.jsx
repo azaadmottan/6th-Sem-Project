@@ -35,7 +35,7 @@ function Blog() {
                     
                     <div className='dark:bg-[#0d043c] p-4 mt-4 rounded-xl'>
                         <div className="p-3">
-                            <h2 className="text-center text-xl text-white">Sign in now  to see the blog posts!</h2>
+                            <h2 className="text-center text-xl text-black dark:text-white hover:text-opacity-70">Sign in now  to see the blog posts!</h2>
                         </div>
                     </div>
             ) : (

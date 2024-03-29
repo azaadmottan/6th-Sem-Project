@@ -125,6 +125,43 @@ class ConfService {
         }
     }
 
+    async getMostLikedPost() {
+        try {
+            // Fetch all documents/posts from the collection
+            const posts = await this.database.listDocuments(
+                config.appWriteDatabaseId,
+                config.appWriteCollectionId,
+                [Query.equal("status", "active")]
+            );
+
+            // Calculate the total number of likes for each post
+            const postsWithLikes = await Promise.all(posts.documents.map(async post => {
+                const likes = await this.database.listDocuments(
+                    config.appWriteDatabaseId,
+                    config.appWriteLikeCollectionId,
+                    [
+                        Query.equal("featuredImage", post.featuredImage) 
+                    ]
+                );
+
+                return {
+                    ...post,
+                    likesCount: likes.length
+                };
+            }));
+    
+            // Sort the posts by the number of likes in descending order
+            postsWithLikes.sort((a, b) => b.likesCount - a.likesCount);
+    
+            // Return the most liked post (first post in the sorted array)
+            return postsWithLikes[0];
+        } catch (error) {
+            console.log(`\nSomething went wrong while fetching posts !\nError: ${error}`);
+            return false;
+        }
+    }
+    
+
     // upload File 
 
     async uploadFile ( file ) {
