@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import confService from "../services/confService";
 import { Logo } from "../components/index.js";
+import { useSelector } from "react-redux";
+import { FaHeart } from "react-icons/fa";
 
 function Explore() {
 
@@ -34,46 +36,79 @@ function Explore() {
             <h2>Explore the best of SnapThread</h2>
         </div>
 
-
-        <div className='md:mt-6 lg:w-12/12 md:w-11/12 w-[95%]l m-auto p-1 md:p-4 md:border-2 md:border-red-600 rounded-xl relative z-0 select-none'>
-            
         {
-            (!loading && mostLikedPost) ? (
-            <>
-                <div>
-                    <div className='mt-5 w-full h-[60vh] md:h-[80vh] m-auto p-[4px] md:p-2 border-2 border-red-600 rounded-lg relative z-0'>
-                        <img 
-                            src={confService.filePreview(mostLikedPost.featuredImage)} 
-                            alt={mostLikedPost.title} 
-                            className='h-[100%] md:h-[75vh] m-auto object-contain rounded-lg'
-                        />
+            (!(useSelector( (state) => state.auth.status ))) ? (
+
+                <div className='dark:bg-[#0d043c] p-4 mt-4 rounded-xl'>
+                    <div className="p-3">
+                        <h2 className="text-center text-xl text-black dark:text-white hover:text-opacity-70">Sign in now  to see the post</h2>
                     </div>
-
                 </div>
-
-                <div className='mt-6 bg-white px-4 py-4 rounded-xl relative dark:bg-[#0e125d] dark:text-white'>
-                    <h2 className='md:text-xl text-lg font-extrabold'>{mostLikedPost.title}</h2>
-                    <span className='absolute -top-2 right-2 bg-[#E60023] text-white px-2 text-xs sm:text-sm md:text-[18px] tracking-wider rounded-full cursor-context-menu' title={`Status: ${mostLikedPost.status}`}>{mostLikedPost.status}</span>
-                </div>
-
-                <div className='mt-6 bg-white px-4 py-4 rounded-xl dark:bg-[#0e125d] dark:text-white'>
-                    <h3 className='text-[14px] tracking-wider md:text-lg font-medium italic'>{mostLikedPost.content}</h3>
-                </div>
-
-            </>
             ) : (
-                <div className='flex flex-col items-center justify-center w-full mt-8'>
 
-                    <div className='w-20 h-20 border-2 border-[#df2121] rounded-full animate-spin border-t-transparent'></div>
+                <div className='md:mt-6 lg:w-12/12 md:w-11/12 w-[95%]l m-auto p-1 md:p-4 md:border-2 md:border-red-600 rounded-xl relative z-0 select-none'>
+                    
+                {
+                    (!loading && mostLikedPost) ? (
+                    <>
+                        <div>
+                            <div className='mt-5 w-full h-[60vh] md:h-[80vh] m-auto p-[4px] md:p-2 border-2 border-red-600 rounded-lg relative z-0'>
+                                <img 
+                                    src={confService.filePreview(mostLikedPost.featuredImage)} 
+                                    alt={mostLikedPost.title} 
+                                    className='h-[100%] md:h-[75vh] m-auto object-contain rounded-lg'
+                                />
+                            </div>
 
-                    <div className='flex items-center mt-10 bg-zinc-50 rounded-xl px-20 py-2'>
-                        <Logo />
-                    </div>
+                        </div>
 
+                        <div className='mt-6 bg-white px-4 py-4 rounded-xl relative dark:bg-[#0e125d] dark:text-white'>
+                            <h2 className='md:text-xl text-lg font-extrabold'>{mostLikedPost.title}</h2>
+                            <span className='absolute -top-2 right-2 bg-[#E60023] text-white px-2 text-xs sm:text-sm md:text-[18px] tracking-wider rounded-full cursor-context-menu' title={`Status: ${mostLikedPost.status}`}>{mostLikedPost.status}</span>
+                        </div>
+
+                        <div className='mt-6 bg-white px-4 py-4 rounded-xl dark:bg-[#0e125d] dark:text-white'>
+                            <h3 className='text-[14px] tracking-wider md:text-lg font-medium italic'>{mostLikedPost.content}</h3>
+                        </div>
+
+                        <div className='mt-6 bg-white px-4 py-4 rounded-xl select-none dark:bg-[#0e125d] tracking-wider dark:text-white'>
+
+                            <div className='flex items-center my-2 gap-8 md:gap-14'>
+
+                                <span className='flex items-center gap-2 text-sm  md:text-md font-semibold'>
+
+                                    <FaHeart color={"#ff2626"} size={"25px"} /> 
+
+                                    {
+                                        (mostLikedPost.likesCount > 0) ? (
+                                            <span className="text-[14px] tracking-wider md:text-lg font-normal italic"> 
+                                            {mostLikedPost.likesCount} users like this post.</span>
+                                        ) : (
+                                            <span className="text-[14px] tracking-wider md:text-lg font-medium italic">No like found</span>
+                                        )
+                                    }
+
+                                </span>
+
+                            </div>
+                            </div>
+
+                    </>
+                    ) : (
+                        <div className='flex flex-col items-center justify-center w-full mt-8'>
+
+                            <div className='w-20 h-20 border-2 border-[#df2121] rounded-full animate-spin border-t-transparent'></div>
+
+                            <div className='flex items-center mt-10 bg-zinc-50 rounded-xl px-20 py-2'>
+                                <Logo />
+                            </div>
+
+                        </div>
+                    )
+                    }
                 </div>
             )
-            }
-        </div>
+        }
 
     </div>
 

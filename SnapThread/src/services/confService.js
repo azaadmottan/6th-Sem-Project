@@ -146,7 +146,7 @@ class ConfService {
 
                 return {
                     ...post,
-                    likesCount: likes.length
+                    likesCount: likes.total
                 };
             }));
     
