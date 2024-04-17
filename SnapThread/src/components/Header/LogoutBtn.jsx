@@ -38,7 +38,7 @@ function LogoutBtn() {
                 showModal && (
 
                     <ShowModal 
-                        title="Sign out Modal" 
+                        title="Sign out" 
                         body="Are you sure you want to sign out ?" 
                         buttonText="Sign Out"
                         onClose={() => setShowModal(false)} 

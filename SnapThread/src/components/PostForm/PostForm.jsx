@@ -116,7 +116,9 @@ function PostForm({ post }) {
     <div className='lg:w-8/12 md:w-11/12 w-[95%] m-auto md:px-6 md:py-8 px-2 py-4 bg-zinc-200 bg-opacity-70 rounded-lg dark:bg-[#15016e]'>
 
         <div className='text-center text-red-600 font-medium lg:text-4xl md:text-2xl text-xl dark:text-white'>
-            <h2>Create New Post</h2>
+            {
+                (!post) ? <h2>Create New Post</h2> : <h2>Edit Post</h2>
+            }
         </div>
 
         <form onSubmit={handleSubmit(submit)}>
